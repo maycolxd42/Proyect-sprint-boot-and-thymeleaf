@@ -1,0 +1,52 @@
+body{
+    cursor: url("../images/mouse1.png"), auto;
+}
+
+.active-cursor {
+    cursor: url("../images/mouse2.png"), auto;
+}
+
+a{
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+button:hover{
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+a:hover{
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.icon{
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.icon:hover {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.btn-volver button {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.btn-volver button:hover {
+    cursor: url("../images/mouse3.png"), auto;
+}
+.product-card:hover {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.product-card .back button:hover {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.btn-acualizar {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+.btn-acualizar:hover {
+    cursor: url("../images/mouse3.png"), auto;
+}
+
+

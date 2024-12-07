@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+
+<body>
+<header>
+    <div class="navbar" id="myTopnav">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="Logo Pizzería Delicia's" class="logo">
+        </div>
+        <div class="brand-name-container">
+            <h1 class="brand-name">PIZZERIA DELICIA'S</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pizzeria/index" class="active">INICIO</a></li>
+                <li><a href="/pizzeria/menu">MENÚ</a></li>
+                <li><a href="/pizzeria/nosotros">NOSOTROS</a></li>
+                <li><a href="/pizzeria/soporte">CONTACTO</a></li>
+                <li><a href="/pizzeria/cart">CARRITO</a></li>
+                <!-- Manejo dinámico de sesión -->
+                <li th:if="${cliente == null}">
+                    <a href="/pizzeria/login">INICIAR SESIÓN</a>
+                </li>
+                <li th:if="${cliente != null}">
+                    <a href="/pizzeria/logout">CERRAR SESIÓN</a>
+                </li>
+            </ul>
+        </nav>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</header>
+
+<div class="banner">
+    <img src="/images/index.jpg" class="banner-image">
+    <div class="texto1">Disfruta de nuestros sabores únicos</div>
+</div>
+
+<main>
+    <!-- Sección de Pizzas -->
+    <section class="product-section">
+        <h1 class="section-title">LOS MÁS VENDIDOS</h1>
+        <div class="product-list">
+            <!-- Mostrar solo 4 productos -->
+            <div th:each="producto : ${listado}" class="product-card">
+                <img th:src="@{'/images/' + ${producto.imagen}}" alt="Imagen de ${producto.nombre}" class="product-image">
+                <h2 th:text="${producto.nombre}"></h2>
+                <p th:text="${producto.descripcion}"></p>
+                <p>Precio: S/. <span th:text="${producto.precio}"></span></p>
+            </div>
+        </div>
+        <!-- Botón Ver más -->
+        <div class="product-button">
+            <a th:href="@{/pizzeria/menu}"  class="view-more-button">Ver más productos</a>
+        </div>
+    </section>
+
+</main>
+
+<div class="fondo">
+    <img src="/images/fondo.png" class="fondo-image">
+    <div class="fondo2">
+           <div class="fondo2-img-seccion">
+                <img src="/images/mesa.jpg" class="fondo2-image">
+           </div>
+            <div class="fondo2-texto-seccion">
+                <h2>Conoce nuestra esencia, lo que hace únicas nuestras pizzas con sabores auténticos e ingredientes frescos en cada rebanada.</h2>
+                <a th:href="@{/pizzeria/nosotros}" class="view-more-button">Ver más sobre nosotros</a>
+            </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3>Pizzería Delicias</h3>
+            <p>La mejor pizza artesanal de la ciudad. Disfruta de nuestras deliciosas opciones hechas con amor.</p>
+            <p>&copy; 2024 Pizzería Delicias. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-socials">
+            <h4>Síguenos</h4>
+            <ul>
+                <li><a class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/funciones.js"></script>
+
+</body>
+
+</html>

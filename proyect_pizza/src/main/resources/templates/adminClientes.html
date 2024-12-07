@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Clientes</title>
+  <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/cursor.css">
+  <link rel="stylesheet" href="/css/adminClientes.css">
+</head>
+<body>
+<h1>Administrar clientes</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre completo</th>
+    <th>Email</th>
+    <th>Teléfono</th>
+    <th>Fecha de nacimiento</th>
+    <th>Contraseña</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="cliente : ${clientes}">
+    <td th:text="${cliente.idCliente}"></td>
+    <td th:text="${cliente.nombreCompleto}"></td>
+    <td th:text="${cliente.email}"></td>
+    <td th:text="${cliente.telefono}"></td>
+    <td th:text="${cliente.fechaNacimiento}"></td>
+    <td class="pass" th:text="${cliente.contrasena}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/admin-pizzeria/dashboard}" class="btn-volver">
+  <button type="button">Volver</button>
+</a>
+
+<script src="/js/funciones.js"></script>
+</body>
+</html>

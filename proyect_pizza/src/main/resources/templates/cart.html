@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+
+<body>
+<header>
+    <div class="navbar" id="myTopnav">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="Logo Pizzería Delicia's" class="logo">
+        </div>
+        <div class="brand-name-container">
+            <h1 class="brand-name">PIZZERIA DELICIA'S</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pizzeria/index" class="active">INICIO</a></li>
+                <li><a href="/pizzeria/menu">MENÚ</a></li>
+                <li><a href="/pizzeria/nosotros">NOSOTROS</a></li>
+                <li><a href="/pizzeria/soporte">CONTACTO</a></li>
+                <li><a href="/pizzeria/cart">CARRITO</a></li>
+                <!-- Manejo dinámico de sesión -->
+                <li th:if="${cliente == null}">
+                    <a href="/pizzeria/login">INICIAR SESIÓN</a>
+                </li>
+                <li th:if="${cliente != null}">
+                    <a href="/pizzeria/logout">CERRAR SESIÓN</a>
+                </li>
+            </ul>
+        </nav>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</header>
+
+<main>
+    <section class="cart-section">
+        <h1 class="section-title">Tus Productos</h1>
+
+        <!-- Mensaje de éxito -->
+        <div id="mensajeExito" th:if="${mensajeExito != null}" th:text="${mensajeExito}" style="display: none;"></div>
+
+        <!-- Mensaje de error -->
+        <div th:if="${error != null}" class="error-message" id="errorMessage">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div class="cart-list">
+            <div th:if="${productosCarrito != null and productosCarrito.size() > 0}">
+                <table class="cart-table">
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="producto : ${productosCarrito}">
+                        <td th:text="${producto.nombre}"></td>
+                        <td>
+                            <img th:src="@{'/images/' + ${producto.imagen}}" alt="Imagen de ${producto.nombre}" class="cart-item-image">
+                        </td>
+                        <td th:text="${producto.descripcion}"></td>
+                        <td>
+                            <input type="number" class="quantity-input"
+                                   th:data-idProducto="${producto.idProducto}"
+                                   th:data-precio="${producto.precio}"
+                                   th:value="${producto.cantidad}"
+                                   min="1">
+                        </td>
+                        <td>S/. <span th:text="${producto.precio}"></span></td>
+                        <td>
+                            S/. <span class="subtotal" th:text="${producto.precio * producto.cantidad}"></span>
+                        </td>
+                        <td>
+                            <form action="/pizzeria/removeFromCart" method="post">
+                                <input type="hidden" name="idProducto" th:value="${producto.idProducto}" />
+                                <button type="submit" class="remove-btn">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${productosCarrito == null or productosCarrito.size() == 0}" class="empty-cart">
+                <p>Tu carrito está vacío. ¡Añade productos desde el menú!</p>
+            </div>
+        </div>
+
+        <!-- Resumen del carrito -->
+        <div class="cart-summary">
+            <h3>Resumen del Pedido</h3>
+            <div class="summary-details">
+                <p>Total de productos: <span id="totalProductos" th:text="${totalCantidadProductos}"></span></p>
+                <p>Total a pagar: S/. <span id="totalPagar" th:text="${total != null ? total : 0.0}"></span></p>
+            </div>
+
+            <!-- Formulario para finalizar la compra -->
+            <form action="/pizzeria/checkout" method="POST" id="checkoutForm">
+                <input type="hidden" name="idCliente" th:value="${cliente.idCliente}"/>
+                <label for="idTipoDocumento">Tipo de documento:</label>
+                <select name="idTipoDocumento" id="idTipoDocumento">
+                    <th:block th:each="tipoDocumento : ${tiposDocumento}">
+                        <option th:value="${tipoDocumento.idTipoDocumento}"
+                                th:text="${tipoDocumento.nombre}"></option>
+                    </th:block>
+                </select>
+                <button type="submit" class="checkout-btn">Finalizar Compra</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <!-- Footer content -->
+</footer>
+
+<script src="/js/funciones.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const mensajeExito = document.getElementById('mensajeExito')?.innerText.trim();
+
+        if (mensajeExito) {
+            Swal.fire({
+                title: '¡Compra realizada!',
+                text: mensajeExito,
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#28a745',
+            });
+        }
+
+        const quantityInputs = document.querySelectorAll('.quantity-input');
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('input', function () {
+                const productoId = this.getAttribute('data-idProducto');
+                const nuevaCantidad = parseInt(this.value) || 1;
+                const precioUnitario = parseFloat(this.getAttribute('data-precio'));
+
+                if (nuevaCantidad < 1) {
+                    alert('La cantidad debe ser al menos 1.');
+                    this.value = 1;
+                    return;
+                }
+
+                const subtotal = precioUnitario * nuevaCantidad;
+                this.closest('tr').querySelector('.subtotal').innerText = subtotal.toFixed(1);
+
+                actualizarCarrito(productoId, nuevaCantidad);
+            });
+        });
+
+        function actualizarCarrito(idProducto, cantidad) {
+            $.ajax({
+                url: '/pizzeria/updateQuantity',
+                method: 'POST',
+                data: {
+                    idProducto: idProducto,
+                    cantidad: cantidad
+                },
+                success: function (response) {
+                    actualizarTotales(response.total, response.cartCount);
+                },
+                error: function (error) {
+                    console.log('Error al actualizar la cantidad:', error);
+                }
+            });
+        }
+
+        function actualizarTotales(total, cartCount) {
+            document.getElementById('totalPagar').innerText = total.toFixed(1);  // Total a pagar
+            document.getElementById('totalProductos').innerText = cartCount;  // Total de productos
+        }
+    });
+</script>
+
+</body>
+
+</html>

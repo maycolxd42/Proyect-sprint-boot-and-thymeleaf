@@ -1,0 +1,123 @@
+.cart-section {
+    padding: 30px;
+}
+
+.cart-section .section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #388E3C;
+    margin-bottom: 30px;
+}
+
+.cart-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.cart-table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.cart-table td {
+    background-color: #f9f9f9;
+}
+
+.cart-table td img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    font-size: 14px;
+}
+
+.remove-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #388E3C;
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 18px;
+    color: #388E3C;
+    margin-top: 20px;
+}
+
+.cart-summary {
+    background-color: #E8F5E9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.cart-summary h3 {
+    color: #388E3C;
+    font-size: 24px;
+}
+
+.cart-summary .summary-details {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.cart-summary .summary-details p {
+    margin: 8px 0;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #388E3C;
+}
+
+
+.error-message {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}

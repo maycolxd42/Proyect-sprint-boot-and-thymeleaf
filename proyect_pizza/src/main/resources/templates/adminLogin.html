@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Pizzería</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/adminLogin.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+<body>
+<div class="background">
+    <img src="/images/login.jpg" alt="Fondo Pizzería">
+
+    <div class="login-container">
+        <h1>Inicio de sesión para empleados</h1>
+        <form th:action="@{/admin-pizzeria/login}" method="post">
+            <label for="email">Correo electrónico:</label>
+            <div class="container-email">
+                <div class="wrapper">
+                    <input type="email" id="email" name="email" required placeholder="Ingresa el correo...">
+                </div>
+            </div>
+
+            <label for="pass">Contraseña:</label>
+            <div class="container-pass">
+                <div class="wrapper">
+                    <input type="password" name="password" id="pass" required placeholder="Ingresa la contraseña...">
+                    <span class="show-btn"><i class="fas fa-eye"></i></span>
+                </div>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p th:if="${error}" th:text="${error}"></p>
+    </div>
+</div>
+
+<script>
+    const passField = document.getElementById("pass");
+    const showBtn = document.querySelector("span i");
+    showBtn.onclick = (() => {
+        if(passField.type === "password"){
+            passField.type = "text";
+            showBtn.classList.add("hide-btn")
+        }else{
+            passField.type = "password"
+            showBtn.classList.remove("hide-btn")
+        }
+    })
+</script>
+<script src="/js/funciones.js"></script>
+</body>
+</html>

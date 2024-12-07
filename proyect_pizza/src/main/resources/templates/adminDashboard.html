@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Pizzería</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminDashboard.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+<body>
+<div class="header">
+    <h1>Dashboard</h1>
+    <a href="/admin-pizzeria/logout">Cerrar sesión</a>
+</div>
+
+<div class="dashboard-container">
+    <div class="welcome-message">
+        <h2>¡Bienvenido, <span th:text="${empleado.nombre}">Administrador</span>!</h2>
+    </div>
+
+    <div class="tasks-section">
+        <h2>Tareas</h2>
+        <hr>
+        <div class="task-buttons">
+            <a href="/admin-pizzeria/soporte">Soporte al cliente</a>
+            <a href="/admin-pizzeria/gestion-personal">Administración de personal</a>
+            <a href="/admin-pizzeria/gestion-clientes">Administración de clientes</a>
+            <a href="/admin-pizzeria/inventarios">Control de producto e inventario</a>
+            <a href="/admin-pizzeria/control-pedidos">Control de pedidos</a>
+            <a href="/admin-pizzeria/control-transacciones">Control de transacciones</a>
+        </div>
+    </div>
+</div>
+
+<script src="/js/funciones.js"></script>
+
+</body>
+</html>

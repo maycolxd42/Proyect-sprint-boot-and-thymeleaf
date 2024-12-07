@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/soporte.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+
+<body>
+<header>
+    <div class="navbar" id="myTopnav">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="Logo Pizzería Delicia's" class="logo">
+        </div>
+        <div class="brand-name-container">
+            <h1 class="brand-name">PIZZERIA DELICIA'S</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pizzeria/index">INICIO</a></li>
+                <li><a href="/pizzeria/menu">MENÚ</a></li>
+                <li><a href="/pizzeria/nosotros">NOSOTROS</a></li>
+                <li><a href="/pizzeria/soporte" class="active">CONTACTO</a></li>
+                <li><a href="/pizzeria/cart">CARRITO</a></li>
+                <!-- Manejo dinámico de sesión -->
+                <li th:if="${cliente == null}">
+                    <a href="/pizzeria/login">INICIAR SESIÓN</a>
+                </li>
+                <li th:if="${cliente != null}">
+                    <a href="/pizzeria/logout">CERRAR SESIÓN</a>
+                </li>
+            </ul>
+        </nav>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</header>
+
+<div class="banner">
+    <img src="/images/soporte.jpg" class="banner-image">
+    <div class="texto1">Soporte</div>
+</div>
+
+<!-- script para integrar el chatbot -->
+<div id="myLandbot" style="width: 100%; height: 600px"></div>
+<script SameSite="None; Secure" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.js"></script>
+<script>
+    var myLandbot = new Landbot.Container({
+        container: '#myLandbot',
+        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2710328-9LK6ON4R388SHZGK/index.json',
+    });
+</script>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3>Pizzería Delicias</h3>
+            <p>La mejor pizza artesanal de la ciudad. Disfruta de nuestras deliciosas opciones hechas con amor.</p>
+            <p>&copy; 2024 Pizzería Delicias. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-socials">
+            <h4>Síguenos</h4>
+            <ul>
+                <li><a class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                <li><a class="social-icon"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script src="/js/funciones.js"></script>
+</body>
+
+</html>

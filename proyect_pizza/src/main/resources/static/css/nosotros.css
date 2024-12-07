@@ -1,0 +1,70 @@
+
+.content-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    max-width: 1361px;
+    width: 100%;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.image-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-image {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    object-fit: contain;
+}
+
+.text-column {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.text-content {
+    color: #000;
+}
+
+.mission-title,
+.vision-title {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.mission-text,
+.vision-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 991px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .text-column {
+        padding: 10px 20px;
+    }
+}

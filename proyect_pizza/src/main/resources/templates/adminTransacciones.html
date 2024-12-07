@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Transacciones</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cursor.css">
+    <link rel="stylesheet" href="/css/adminTransacciones.css">
+</head>
+<body>
+<h1>Control de Transacciones</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tipo Documento</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaccion : ${transacciones}">
+        <td th:text="${transaccion.idTransaccion}"></td>
+        <td id="tipoDocumento" th:text="${transaccion.idTipoDocumento}"></td>
+        <td th:text="${transaccion.estado}"></td>
+        <td class="date-cell" th:text="${transaccion.fechaTransaccionFormateada}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/admin-pizzeria/dashboard}" class="btn-volver">
+    <button type="button">Volver</button>
+</a>
+
+<script src="/js/funciones.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtenemos todos los elementos con el id 'tipoDocumento'
+        let tipoDocumentoCells = document.querySelectorAll('#tipoDocumento');
+
+        tipoDocumentoCells.forEach(function(cell) {
+            // Obtenemos el texto del idTipoDocumento
+            let tipoDocumento = parseInt(cell.textContent.trim());
+
+            // Cambiar el contenido del tipo de documento
+            if (tipoDocumento === 1) {
+                cell.textContent = 'Boleta';
+            } else if (tipoDocumento === 2) {
+                cell.textContent = 'Factura';
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+body{
+    background-color: #000f29;
+}
+
+
+h1{
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+}
+
+div {
+    margin: 0 auto;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #3498db;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    animation: borderColorChange 5s linear infinite;
+}
+
+@keyframes borderColorChange {
+    0% {
+        border-color: #3498db;
+    }
+    25% {
+        border-color: #e74c3c;
+    }
+    50% {
+        border-color: #f1c40f;
+    }
+    75% {
+        border-color: #2ecc71;
+    }
+    100% {
+        border-color: #3498db;
+    }
+}
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+    color: black;
+}
+
+p strong {
+    color: black;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 96%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
+}
+
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+button[type="button"] {
+    background-color: #e74c3c;
+    color: #fff;
+    margin-left: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.botones{
+    background-color: #000f29;
+    border: #000f29;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a button {
+    display: inline-block;
+}
+
+div:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}

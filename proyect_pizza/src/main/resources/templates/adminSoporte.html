@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes de Soporte</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cursor.css">
+    <link rel="stylesheet" href="/css/adminSoporte.css">
+</head>
+<body>
+
+<h1>Mensajes recibidos</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>N° de consulta</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Mensaje</th>
+        <th>Fecha y hora</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="soporte : ${soportes}">
+        <td th:text="${soporte.idSoporte}"></td>
+        <td th:text="${soporte.nombre}"></td>
+        <td th:text="${soporte.email}"></td>
+        <td class="message-cell" th:text="${soporte.mensaje}"></td>
+        <td class="date-cell" th:text="${#dates.format(soporte.fecha, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td>
+            <!-- Botón para responder al mensaje -->
+            <a th:href="@{/admin-pizzeria/soporte/responder/{id}(id=${soporte.idSoporte})}">Responder</a>
+
+            <!-- Botón para borrar el mensaje -->
+            <form th:action="@{/admin-pizzeria/soporte/borrar/{idSoporte}(idSoporte=${soporte.idSoporte})}" method="post">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este mensaje?')">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/admin-pizzeria/dashboard}" class="btn-volver">
+    <button type="button">Volver</button>
+</a>
+
+<script src="/js/funciones.js"></script>
+</body>
+</html>

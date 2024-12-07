@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responder a Soporte</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminResponseSoporte.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+<body>
+
+<!-- Mostrar mensajes de éxito o error -->
+<div th:if="${message}" th:classappend="${status == 'success'} ? 'alert-success' : 'alert-error'" class="alert">
+    <p th:text="${message}"></p>
+</div>
+
+<h1>Centro de repuestas</h1>
+
+<div>
+    <h2>Detalles del mensaje</h2>
+    <p><strong>Nombre:</strong> <span th:text="${soporte.nombre}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${soporte.email}"></span></p>
+    <p><strong>Mensaje:</strong></p>
+    <p th:text="${soporte.mensaje}"></p>
+    <p><strong>Fecha:</strong> <span th:text="${#dates.format(soporte.fecha, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+</div>
+
+<!-- Formulario para responder al soporte -->
+<form th:action="@{/admin-pizzeria/soporte/responder/{id}(id=${soporte.idSoporte})}" method="post">
+    <input type="hidden" name="email" th:value="${soporte.email}"/>
+
+    <div>
+        <label for="respuesta">Respuesta:</label><br/>
+        <textarea id="respuesta" name="respuesta" rows="5" cols="40" required></textarea>
+    </div>
+
+    <div class="botones">
+        <button type="submit">Enviar Respuesta</button>
+        <a href="/admin-pizzeria/soporte">
+            <button type="button">Cancelar</button>
+        </a>
+    </div>
+</form>
+
+<script src="/js/funciones.js"></script>
+
+</body>
+</html>

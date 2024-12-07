@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Inventario</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminInventario.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+</head>
+<body>
+<h1>Control de productos e inventario</h1>
+<div class="content">
+    <!-- Sección de productos -->
+    <div class="section">
+        <h2>Lista de Productos</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.idProducto}"></td>
+                <td>
+                    <img th:src="@{'/images/' + ${producto.imagen}}" alt="Imagen del producto" style="width: 50px; height: auto;">
+                </td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.descripcion}"></td>
+                <td th:text="${producto.precio}"></td>
+                <td th:text="${producto.idCategoriaProducto}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sección de inventarios -->
+    <div class="section">
+        <h2>Lista de Inventarios</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Cantidad Disponible</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inventario : ${inventarios}">
+                <td th:text="${inventario.idInventario}"></td>
+                <td th:text="${inventario.idProducto}"></td>
+                <td th:text="${inventario.cantidadDisponible}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a th:href="@{/admin-pizzeria/dashboard}" class="btn-volver">
+    <button type="button">Volver</button>
+</a>
+
+<script src="/js/funciones.js"></script>
+
+</body>
+</html>

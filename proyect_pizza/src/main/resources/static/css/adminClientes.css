@@ -1,0 +1,228 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 18px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Ajustar el tamaño de las celdas */
+th, td {
+    text-align: left;
+}
+
+/* Hacer que la primera columna sea más pequeña */
+th:first-child, td:first-child {
+    width: 8%; /* Ajusta este valor según lo necesites */
+    text-align: center; /* Centrar el número de fila */
+}
+
+td.pass {
+    max-width: 20%;
+    word-wrap: break-word; /* O puedes usar overflow-wrap: break-word; */
+    word-break: break-all;
+    white-space: normal; /* Permitir el salto de línea */
+}
+
+td a, td button {
+    display: inline-block;
+    padding: 8px 12px; /* Tamaño de los botones */
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 8px; /* Espacio entre botones */
+}
+
+td a {
+    background-color: green;
+}
+
+td button {
+    background-color: red;
+}
+
+td a:hover {
+    background-color: darkgreen;
+}
+
+td button:hover {
+    background-color: darkred;
+}
+
+/* Asegurar que los botones estén alineados correctamente */
+td form {
+    display: inline;
+}
+
+/* Estilo para el enlace que contiene el botón */
+.btn-volver {
+    text-decoration: none;
+    margin-top: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+/* Estilo para el botón */
+.btn-volver button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-volver button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    table {
+        width: 90%;
+        font-size: 14px; /* Reducir el tamaño de la fuente */
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    td.pass {
+        width: 60%; /* Reducir el ancho de la columna mensaje */
+    }
+
+    td a, td button {
+        font-size: 10px; /* Reducir el tamaño del texto de los botones */
+        padding: 6px 10px; /* Reducir el tamaño de los botones */
+    }
+
+    td form {
+        display: inline-block; /* Asegurar que los botones estén alineados horizontalmente */
+    }
+}
+
+@media (max-width: 880px) {
+    table {
+        width: 90%;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    td.pass {
+        width: 50%;
+    }
+
+
+    td a, td button {
+        font-size: 9px;
+        padding: 5px 8px;
+        margin-right: 5px; /* Reducir el espacio entre botones */
+    }
+
+    td form {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 720px) {
+    table {
+        width: 90%;
+        font-size: 10px;
+    }
+
+    th, td {
+        padding: 5px 6px;
+    }
+
+    td.pass {
+        width: 40%;
+    }
+
+
+    td a, td button {
+        font-size: 8px;
+        padding: 4px 6px;
+        margin-right: 3px; /* Reducir aún más el espacio entre botones */
+    }
+
+    td form {
+        display: block; /* Alinear botones verticalmente en pantallas muy pequeñas */
+        margin-bottom: 5px; /* Espaciado entre los botones */
+    }
+}
+@media (max-width: 560px) {
+    table {
+        width: 90%;
+        font-size: 8px;
+    }
+
+    th, td {
+        padding: 5px 6px;
+    }
+
+    td.pass {
+        width: 30%;
+    }
+
+    td a, td button {
+        font-size: 7px;
+        padding: 4px 6px;
+        margin-right: 3px; /* Reducir aún más el espacio entre botones */
+    }
+
+    td form {
+        display: block; /* Alinear botones verticalmente en pantallas muy pequeñas */
+        margin-bottom: 5px; /* Espaciado entre los botones */
+    }
+}

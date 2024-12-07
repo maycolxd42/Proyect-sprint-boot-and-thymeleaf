@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Empleados</title>
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cursor.css">
+    <link rel="stylesheet" href="/css/adminPersonal.css">
+    <script>
+        function mostrarFormulario(formId) {
+            // Ocultar todos los formularios
+            const formularios = document.querySelectorAll('.form-container');
+            formularios.forEach(form => form.style.display = 'none');
+
+            // Mostrar el formulario seleccionado
+            const formulario = document.getElementById(formId);
+            formulario.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+<h1>Lista de empleados</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="empleado : ${empleados}">
+        <td th:text="${empleado.idEmpleado}"></td>
+        <td th:text="${empleado.nombre}"></td>
+        <td th:text="${empleado.telefono}"></td>
+        <td th:text="${empleado.email}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Botones para mostrar los formularios -->
+<div class="button-container">
+    <button type="button" class="btn" onclick="mostrarFormulario('formNuevo')">Añadir nuevo empleado</button>
+    <button type="button" class="btn" onclick="mostrarFormulario('formActualizar')">Actualizar mis datos</button>
+</div>
+
+<!-- Formulario para añadir un nuevo empleado -->
+<div id="formNuevo" class="form-container">
+    <h3>Añadir empleado</h3>
+    <form th:action="@{/admin-pizzeria/nuevo-empleado}" th:object="${empleado}" method="post">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required/>
+        <label>Teléfono:</label>
+        <input type="text" th:field="*{telefono}" required/>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/>
+        <label>Contraseña:</label>
+        <input type="password" th:field="*{contrasena}" required/>
+        <input type="submit" value="Añadir"/>
+    </form>
+</div>
+
+<div id="formActualizar" class="form-container">
+    <h3>Actualizar datos</h3>
+    <form th:action="@{/admin-pizzeria/actualizar-empleado}" th:object="${empleado}" method="post">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required/>
+        <label>Teléfono:</label>
+        <input type="text" th:field="*{telefono}" required/>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/>
+        <label>Contraseña:</label>
+        <input type="password" th:field="*{contrasena}" required/>
+        <input type="submit" value="Actualizar"/>
+    </form>
+</div>
+
+<a th:href="@{/admin-pizzeria/dashboard}" class="btn-volver">
+    <button type="button" class="btn">Volver</button>
+</a>
+
+<script src="/js/funciones.js"></script>
+
+</body>
+</html>
